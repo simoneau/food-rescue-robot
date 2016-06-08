@@ -26,18 +26,33 @@ gem 'twitter-bootstrap-rails'
 
 group :development do
   gem 'better_errors'
+  gem 'guard-bundler'
+  gem 'guard-rspec'
+  gem 'quiet_assets'
+  gem 'rails_layout'
+  gem 'rb-fchange', :require=>false
+  gem 'rb-fsevent', :require=>false
+  gem 'rb-inotify', :require=>false
+  gem 'rails-erd'
   gem 'binding_of_caller'
 end
+
+
 group :development, :test do
+  gem 'byebug'
+  gem 'factory_girl_rails'
+  gem 'faker'
   gem 'pry-rails'
   gem 'pry-rescue'
   gem 'pry-remote'
+  gem 'rspec-rails'
+  gem 'rubocop'
+  gem 'test-unit'
 end
 
 group :test do
-  gem 'rspec-rails'
-  gem 'factory_girl_rails'
   gem 'capybara'
+  gem 'database_cleaner'
   gem 'rack-test'
 end
 
