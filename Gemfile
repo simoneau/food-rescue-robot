@@ -1,11 +1,14 @@
 source 'https://rubygems.org'
-ruby '2.1.5'
+ruby '2.2.4'
 
 # the base rails libraries
 gem 'rails', '~> 3.2.16'
 gem 'thin'
 gem 'pg'
-gem 'rails_12factor'
+
+group :production do
+  gem 'rails_12factor'
+end
 
 # for handling json objects with ruby
 gem 'json'
