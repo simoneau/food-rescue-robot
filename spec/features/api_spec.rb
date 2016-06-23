@@ -5,13 +5,13 @@ describe 'api' do
   it 'can sign in' do
     volunteer = create(:volunteer_with_assignment)
     auth_params = get_auth_params(volunteer)
-    auth_params["volunteer_token"].should_not be_nil
+    expect(auth_params["volunteer_token"]).to_not be_nil
   end
 
   it 'can sign out' do
     volunteer = create(:volunteer_with_assignment)
     auth_params = get_auth_params(volunteer)
-    auth_params["volunteer_token"].should_not be_nil
+    expect(auth_params["volunteer_token"]).to_not be_nil
 
     delete "/volunteers/sign_out.json", auth_params
 
@@ -20,8 +20,8 @@ describe 'api' do
     last_response.status.should eq(204)
 
     auth_params2 = get_auth_params(volunteer)
-    auth_params2["volunteer_token"].should_not be_nil
-    auth_params2["volunteer_token"].should_not eq(auth_params["volunteer_token"])
+    expect(auth_params2["volunteer_token"]).to_not be_nil
+    expect(auth_params2["volunteer_token"]).to_not eq(auth_params["volunteer_token"])
   end
 
   # GET /logs.json
@@ -35,7 +35,7 @@ describe 'api' do
 
     logs = JSON.parse(last_response.body)
     logs.should be_an(Array)
-    logs.length.should eq(1)
+    expect(logs.length).to eq(1)
   end
 
   # GET /logs/:id.json
@@ -83,7 +83,7 @@ describe 'api' do
     log.volunteers << volunteer
     log.save
 
-    auth_params = get_a uth_params(volunteer)
+    auth_params = get_auth_params(volunteer)
     get "/logs/#{log.id}.json", auth_params
     expect(last_response.status).to eq(200)
     json = JSON.parse(last_response.body)
