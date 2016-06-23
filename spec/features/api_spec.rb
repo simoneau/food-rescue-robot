@@ -14,6 +14,9 @@ describe 'api' do
     auth_params["volunteer_token"].should_not be_nil
 
     delete "/volunteers/sign_out.json", auth_params
+
+    body = JSON.parse(last_response.body)
+    body["message"].should eq("Session deleted.")
     last_response.status.should eq(204)
 
     auth_params2 = get_auth_params(volunteer)
@@ -23,14 +26,16 @@ describe 'api' do
 
   # GET /logs.json
   it "can get a list of logs" do
-    create(:log)
+    log = create(:log)
     volunteer = create(:volunteer_with_assignment)
     auth_params = get_auth_params(volunteer)
     get "/logs.json", auth_params
+
     expect(last_response.status).to eq(200)
-    json = JSON.parse(last_response.body)
-    json.should be_an(Array)
-    json.length.should eq(1)
+
+    logs = JSON.parse(last_response.body)
+    logs.should be_an(Array)
+    logs.length.should eq(1)
   end
 
   # GET /logs/:id.json
