@@ -25,18 +25,19 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'twitter-bootstrap-rails'
 
 group :development do
+  #gem 'web-console', '~> 2.0'
+  gem 'spring'
+  gem 'spring-commands-rspec'
   gem 'better_errors'
-  gem 'guard-bundler'
-  gem 'guard-rspec'
+  gem 'foreman'
   gem 'quiet_assets'
   gem 'rails_layout'
-  gem 'rb-fchange', :require=>false
-  gem 'rb-fsevent', :require=>false
-  gem 'rb-inotify', :require=>false
+  gem 'rb-fchange', require: false
+  gem 'rb-fsevent', require: false
+  gem 'rb-inotify', require: false
   gem 'rails-erd'
   gem 'binding_of_caller'
 end
-
 
 group :development, :test do
   gem 'byebug'
@@ -46,6 +47,8 @@ group :development, :test do
   gem 'pry-rescue'
   gem 'pry-remote'
   gem 'rspec-rails'
+  gem 'guard-bundler'
+  gem 'guard-rspec'
   gem 'rubocop'
   gem 'test-unit'
 end
